@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import sys
+from pprint import pprint
 from maquina import Maquina
 
 
@@ -25,15 +26,35 @@ def readlines(filename):
 		transitions = {
 						'estado_atual': spliteds[0],
 						'simbolo_corrente': spliteds[1],
-						'pilha_topo': spliteds[2],
+						'pop_pilha': [],
 						'estado_destino': spliteds[3],
-						'pilha_adds': spliteds[4]
+						'push_pilha': []
 		}
+		if spliteds[2] != dados['epsilon']:
+			aux = spliteds[2][0:7]
+			if aux == dados['epsilon']:
+				transitions['pop_pilha'].append(aux)
+				transitions['pop_pilha'] += [sin for sin in spliteds[2][7:]]
+			else:
+				transitions['pop_pilha'] += [sin for sin in spliteds[2]]
+		else:
+			transitions['pop_pilha'] = [dados['epsilon']]
+
+
+		if spliteds[4] != dados['epsilon']:
+			aux = spliteds[4][0:7]
+			if aux == dados['epsilon']:
+				transitions['push_pilha'] = [sin for sin in spliteds[4][:6:-1]]
+				transitions['push_pilha'].append(aux)
+			else:
+				transitions['push_pilha'] += [sin for sin in spliteds[4][::-1]]
+		else:
+			transitions['push_pilha'] = [dados['epsilon']]
+
+
 		dados['transicoes'].append(transitions)
 
-
-	print(dados)
-
+	return dados
 
 if __name__ == "__main__":
 
@@ -41,6 +62,5 @@ if __name__ == "__main__":
 		print("Chamada de execução:\n\t\t\t$ ./main.py config.txt \"entrada\"\n")
 		exit(1)
 
-	dados = readlines(sys.argv[1])
-
-	machine = Maquina(dados, sys.argv[2].strip('"'))
+	configuracoes = readlines(sys.argv[1])
+	machine = Maquina(configuracoes, sys.argv[2].strip('"'))
