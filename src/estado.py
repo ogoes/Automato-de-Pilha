@@ -10,13 +10,13 @@ class Estado:
     def set_nome(self, nome):
         self.nome = nome
     
-    def get_inicial(self):
+    def is_inicial(self):
         return self.inicial
 
     def set_inicial(self):
         self.inicial = True
 
-    def get_final(self):
+    def is_final(self):
         return self.inicial
 
     def set_final(self):
