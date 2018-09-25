@@ -1,8 +1,7 @@
 class Pilha:
-    def __init__(self, topo = None):
-        if topo != None:
-            self.topo = topo
-            self.tamanho = 1
+    def __init__(self, inicial):
+        self.topo = No(inicial)
+        self.tamanho = 1
 
     def get_topo(self):
         return self.topo
@@ -10,33 +9,39 @@ class Pilha:
     def get_tamanho(self):
         return self.tamanho
 
-    def eh_empty(self):
+    def is_empty(self):
         if self.tamanho == 0:
             return 1
 
-    def push(self, dado):
-        no = No(dado, proximo=None)
-        if self.eh_empty():
-            self.topo = no
+    def push(self, dado, n = 1):
+        for i in range(n):
+            no = No(dado[i], proximo = None)
+            if self.is_empty():
+                self.topo = no
 
-        else:
-            no.set_proximo(self.topo)
-            self.topo = no
+            else:
+                no.set_proximo(self.topo)
+                self.topo = no
 
-        self.tamanho += 1
+            self.tamanho += 1
 
-    def pop(self):
-        if self.tamanho == 0:
-            print("Impossivel remover")
-            return 0
+    def pop(self, n):
+        topos = []
+        for i in range(n):
+            if self.tamanho == 0:
+                print("Impossivel remover")
+                return 0
 
-        aux = self.topo
-        self.topo = aux.get_proximo()
-        aux.set_proximo(None)
+            aux = self.topo
+            self.topo = aux.get_proximo()
+            aux.set_proximo(None)
+            topos.append(aux)
 
-        self.tamanho -= 1
+            self.tamanho -= 1
 
-        return aux
+        return topos
+
+    
 
 class No:
     def __init__(self, dado, proximo = None):
