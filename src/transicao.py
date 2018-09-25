@@ -1,5 +1,5 @@
 class Transicao:
-    def __init__(estado, simbolo_fita, simbolos_pilha, novo_estado, novos_simbolos_pilha):
+    def __init__(self, estado, simbolo_fita, simbolos_pilha, novo_estado, novos_simbolos_pilha):
         self.estado = estado
         self.simbolo_fita = simbolo_fita
         self.simbolos_pilha = simbolos_pilha

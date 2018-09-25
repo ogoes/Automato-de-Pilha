@@ -41,4 +41,5 @@ if __name__ == "__main__":
 		exit(1)
 
 	configuracoes = readlines(sys.argv[1])
+	pprint(configuracoes)
 	machine = Maquina(configuracoes, sys.argv[2].strip('"'))

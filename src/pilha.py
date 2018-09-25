@@ -1,7 +1,8 @@
 class Pilha:
-    def __init__(self, topo = None, tamanho = 0):
-        self.topo = topo
-        self.tamanho = tamanho
+    def __init__(self, topo = None):
+        if topo != None:
+            self.topo = topo
+            self.tamanho = 1
 
     def get_topo(self):
         return self.topo
@@ -11,7 +12,7 @@ class Pilha:
 
     def eh_empty(self):
         if self.tamanho == 0:
-        return 1
+            return 1
 
     def push(self, dado):
         no = No(dado, proximo=None)
@@ -52,5 +53,5 @@ class No:
     def set_dado(self, dado):
         self.dado = dado
 
-    def get_dado(self)
+    def get_dado(self):
         return self.dado

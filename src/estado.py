@@ -1,5 +1,5 @@
 class Estado:
-    def __init__(self, nome)
+    def __init__(self, nome):
         self.nome = nome 
         self.inicial = False
         self.final = False
