@@ -1,10 +1,10 @@
 class Algoz:
 
-    def __init__(self, entrada, pilha, estado_inicial):
+    def __init__(self, entrada, pilha, estado_inicial, epsilon):
 
+        self.epsilon = epsilon
         self.entrada = entrada # entrada já é um vetor
         self.pilha = pilha
-        self.estado_inicial = estado_inicial
         self.estado_atual = estado_inicial
 
 
@@ -20,18 +20,30 @@ class Algoz:
     def get_estado(self):
         return self.estado_atual
 
-    def get_topo_pilha(self, n):
-        aux = []
-        for i in range(n):
-            aux.append(self.pilha.pop())
-        
     def is_finished(self): 
         if self.estado_atual.is_final():
-            print("Entrada aceita")
-            return 0
+            return 1
     
-        if self.pilha.is_empty():
-            return 0
+        if self.pilha.is_empty() and len(self.entrada) == 0:
+            return 1
     
-    def execute(self):
-        pass
+    def execute(self, transicao):
+
+        simbolo = transicao.get_simbolo_fita()
+        if simbolo != self.epsilon:
+            self.shift()
+
+        pilha_pop = transicao.get_simbolos_pilha()
+        if self.epsilon in pilha_pop:
+            pilha_pop.remove(self.epsilon)
+                
+        for i in pilha_pop:
+            self.pilha.pop()
+
+        self.estado_atual = transicao.get_novo_estado()
+
+        pilha_push = transicao.get_novos_simbolos_pilha()
+        if self.epsilon in pilha_push:
+            pilha_push.remove(self.epsilon)
+
+        self.pilha.push(pilha_push)
