@@ -26,7 +26,7 @@ class Maquina:
 				estado.set_inicial()
 			if state in self.estados_finais:
 				estado.set_final()
-			
+
 			self.estados.append(estado)
 
 		self.transicoes = []
@@ -50,8 +50,8 @@ class Maquina:
 		transitions = []
 		for i in self.transicoes:
 			if i.get_estado().get_nome() == execucao.get_estado().get_nome():
-				trasintions.append(i)
-			
+				transitions.append(i)
+		
 		simbolos = []
 		for i in transitions: 
 			if i.get_simbolo_fita() == self.epsilon:
@@ -62,12 +62,12 @@ class Maquina:
 
 		final = []
 		for i in simbolos:
-			if i.get_simbolos_fita()[0] == self.epsilon:
+			if self.epsilon in i.get_simbolos_pilha():
 				final.append(i)
 			
-			if execucao.get_pilha().verifica_topo(i.get_simbolos_fita()) == 1:
+			elif execucao.get_pilha().verifica_topo(i.get_simbolos_pilha()) == 1:
 				final.append(i)
-				
+		
 		return final
 
 	def run (self):
@@ -77,16 +77,12 @@ class Maquina:
 			aux_execs = []
 			aux_trans = []
 			for i in self.execucoes:
-				if i.is_finished():
+				if i.is_finished() == 1:
 					print("Entrada aceita")
 					return 0
 				else:
 					trans = self.get_transicoes(i)
-
-					if len(trans) == 1:
-						aux_execs.append(i)
-						aux_trans.append(trans[0])
-					elif len(trans) > 1:
+					if len(trans) >= 1:
 						aux_execs.append(i)
 						aux_trans.append(trans[0])
 
@@ -94,6 +90,10 @@ class Maquina:
 							aux_execs.append(deepcopy(i))
 							aux_trans.append(t)
 
+
+			if len(aux_trans) == 0:
+				print("Entrada Nao aceita")
+				return 1
 			self.execucoes = aux_execs
 			for (i, execs) in enumerate(self.execucoes):
 				execs.execute(aux_trans[i])

@@ -12,7 +12,8 @@ class Algoz:
         return self.pilha
 
     def get_entrada(self):
-        return self.entrada[0]
+        if len(self.entrada) >= 1:
+            return self.entrada[0]
 
     def shift(self):
         self.entrada = self.entrada[1:]

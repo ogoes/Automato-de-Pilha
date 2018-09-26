@@ -17,7 +17,7 @@ class Estado:
         self.inicial = True
 
     def is_final(self):
-        return self.inicial
+        return self.final
 
     def set_final(self):
-        self.inicial = True
+        self.final = True
