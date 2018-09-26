@@ -46,5 +46,25 @@ class Maquina:
 
 
 	def get_transicoes(self, execucao):
-		
-	pass
+		transitions = []
+		for i in self.transicoes:
+			if i.get_estado().get_nome() == execucao.get_estado().get_nome():
+				trasintions.append(i)
+			
+		simbolos = []
+		for i in transitions: 
+			if i.get_simbolo_fita() == self.epsilon:
+				simbolos.append(i)
+			
+			if i.get_simbolo_fita() == execucao.get_entrada()
+				simbolos.append(i)
+
+		final = []
+		for i in simbolos:
+			if i.get_simbolos_fita()[0] == self.epsilon:
+				final.append(i)
+			
+			if execucao.get_pilha().verifica_topo(i.get_simbolos_fita()) == 1:
+				final.append(i)
+				
+		return final
