@@ -2,6 +2,7 @@ from estado import Estado
 from execucao import Algoz
 from pilha import Pilha
 from transicao import Transicao
+from copy import deepcopy
 
 class Maquina:
 
@@ -42,7 +43,7 @@ class Maquina:
 
 			self.transicoes.append(Transicao(cur_state, simbol_ent, simbols_stack, new_state, new_simbols_stack))
 
-		self.execucoes = [Algoz(self.entrada, Pilha(self.inicial_pilha), self.estado_atual)]
+		self.execucoes = [Algoz(self.entrada, Pilha(self.inicial_pilha), self.estado_atual, self.epsilon)]
 
 
 	def get_transicoes(self, execucao):
@@ -68,3 +69,32 @@ class Maquina:
 				final.append(i)
 				
 		return final
+
+	def run (self):
+
+		while True:
+			
+			aux_execs = []
+			aux_trans = []
+			for i in self.execucoes:
+				if i.is_finised():
+					print("Entrada aceita")
+					return 0
+				else:
+					trans = self.get_transicoes(i)
+
+					if len(trans) == 1:
+						aux_execs.append(i)
+						aux_trans.append(trans[0])
+					elif len(trans) > 1:
+						aux_execs.append(i)
+						aux_trans.append(trans[0])
+
+						for t in trans[1:]:
+							aux_execs.append(deepcopy(i))
+							aux_trans.append(t)
+
+			self.execucoes = aux_execs
+			for (i, execs) in enumerate(self.execucoes):
+				execs.execute(aux_trans[i])
+		
