@@ -42,4 +42,4 @@ if __name__ == "__main__":
 
 	configuracoes = readlines(sys.argv[1])
 	machine = Maquina(configuracoes, sys.argv[2].strip('"'))
-	# machine.run()
+	machine.run()

@@ -57,7 +57,7 @@ class Maquina:
 			if i.get_simbolo_fita() == self.epsilon:
 				simbolos.append(i)
 			
-			if i.get_simbolo_fita() == execucao.get_entrada()
+			if i.get_simbolo_fita() == execucao.get_entrada():
 				simbolos.append(i)
 
 		final = []
@@ -77,7 +77,7 @@ class Maquina:
 			aux_execs = []
 			aux_trans = []
 			for i in self.execucoes:
-				if i.is_finised():
+				if i.is_finished():
 					print("Entrada aceita")
 					return 0
 				else:
