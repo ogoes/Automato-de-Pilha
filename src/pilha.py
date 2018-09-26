@@ -1,10 +1,10 @@
 class Pilha:
     def __init__(self, inicial):
-        self.topo = No(inicial)
+        self.pilha = [inicial]
         self.tamanho = 1
 
     def get_topo(self):
-        return self.topo
+        return self.pilha[0]
 
     def get_tamanho(self):
         return self.tamanho
@@ -13,50 +13,26 @@ class Pilha:
         if self.tamanho == 0:
             return 1
 
-    def push(self, dado, n = 1):
-        for i in range(n):
-            no = No(dado[i], proximo = None)
-            if self.is_empty():
-                self.topo = no
+    def push(self, dado):
+        # dado já é um vetor de simbolos
 
-            else:
-                no.set_proximo(self.topo)
-                self.topo = no
+        self.pilha = dado + self.pilha
+        self.tamanho += len(dado)
 
-            self.tamanho += 1
+    def pop(self):
+        aux = self.pilha[0]
+        self.pilha = self.pilha[1:]
 
-    def pop(self, n):
-        topos = []
-        for i in range(n):
-            if self.tamanho == 0:
-                print("Impossivel remover")
-                return 0
+        return aux
 
-            aux = self.topo
-            self.topo = aux.get_proximo()
-            aux.set_proximo(None)
-            topos.append(aux)
-
-            self.tamanho -= 1
-
-        return topos
+    def verifica_topo(self, dados): ## verifica o top da pilha sem remover elementos
+        # vetor de verificação
+        tamanho = len(dados)
+        verifica = self.pilha[:tamanho+1]
+        
+        if dados == verifica:
+            return 1
+        else:
+            return 0;
 
     
-
-class No:
-    def __init__(self, dado, proximo = None):
-
-        self.dado = dado
-        self.proximo = proximo
-
-    def set_proximo(self, proximo):
-        self.proximo = proximo
-
-    def get_proximo(self):
-        return self.proximo
-    
-    def set_dado(self, dado):
-        self.dado = dado
-
-    def get_dado(self):
-        return self.dado

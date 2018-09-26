@@ -7,10 +7,15 @@ class Algoz:
         self.estado_inicial = estado_inicial
         self.estado_atual = estado_inicial
 
+
+    def get_pilha(self):
+        return self.pilha
+
     def get_entrada(self):
-        aux = self.entrada[0]
+        return self.entrada[0]
+
+    def shift(self):
         self.entrada = self.entrada[1:]
-        return aux
 
     def get_estado(self):
         return self.estado_atual
