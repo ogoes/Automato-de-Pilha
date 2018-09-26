@@ -2,10 +2,15 @@ class Algoz:
 
     def __init__(self, entrada, pilha, estado_inicial):
 
-        self.entrada = entrada
+        self.entrada = entrada # entrada já é um vetor
         self.pilha = pilha
         self.estado_inicial = estado_inicial
         self.estado_atual = estado_inicial
+
+    def get_entrada(self):
+        aux = self.entrada[0]
+        self.entrada = self.entrada[1:]
+        return aux
 
     def get_estado(self):
         return self.estado_atual

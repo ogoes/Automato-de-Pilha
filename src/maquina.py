@@ -30,15 +30,21 @@ class Maquina:
 
 		self.transicoes = []
 		for transition in self.transicoes_tmp:
-			state = transition['estado_atual']
+			for i in self.estados:
+				if i.get_nome() == transition['estado_atual']:
+					cur_state = i
+				if i.get_nome() == transition['estado_destino']:
+					new_state = i
+								
 			simbol_ent = transition['simbolo_corrente']
 			simbols_stack = transition['pop_pilha']
-			new_state = transition['estado_destino']
 			new_simbols_stack = transition['push_pilha']
 
-			self.transicoes.append(Transicao(state, simbol_ent, simbols_stack, new_state, new_simbols_stack))
+			self.transicoes.append(Transicao(cur_state, simbol_ent, simbols_stack, new_state, new_simbols_stack))
 
 		self.execucoes = [Algoz(self.entrada, Pilha(self.inicial_pilha), self.estado_atual)]
 
 
+	def get_transicoes(self, execucao):
+		
 	pass
