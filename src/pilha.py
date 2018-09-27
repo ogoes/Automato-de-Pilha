@@ -1,6 +1,6 @@
 class Pilha:
     def __init__(self, inicial):
-        self.pilha = [inicial]
+        self.pilha = [inicial[0]]
         self.tamanho = 1
 
     def get_topo(self):
@@ -22,17 +22,19 @@ class Pilha:
     def pop(self):
         aux = self.pilha[0]
         self.pilha = self.pilha[1:]
+        self.tamanho -= 1
 
         return aux
 
     def verifica_topo(self, dados): ## verifica o top da pilha sem remover elementos
         # vetor de verificação
         tamanho = len(dados)
-        verifica = self.pilha[:tamanho+1]
+        verifica = self.pilha[:tamanho]
         
         if dados == verifica:
             return 1
         else:
             return 0;
 
-    
+    def get_pilha(self):
+        return self.pilha

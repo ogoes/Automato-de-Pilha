@@ -65,7 +65,7 @@ class Maquina:
 			if self.epsilon in i.get_simbolos_pilha():
 				final.append(i)
 			
-			elif execucao.get_pilha().verifica_topo(i.get_simbolos_pilha()) == 1:
+			elif execucao.verifica_pilha(i.get_simbolos_pilha()) == 1:
 				final.append(i)
 		
 		return final
@@ -73,28 +73,40 @@ class Maquina:
 	def run (self):
 
 		while True:
-			
+
 			aux_execs = []
 			aux_trans = []
-			for i in self.execucoes:
-				if i.is_finished() == 1:
-					print("Entrada aceita")
+
+			for x in self.execucoes:
+				if x.is_finished() == 1:
+					print("Entrada aceita", end=' - ')
+					x.descricao()
 					return 0
+			
+			rejeitadas = []
+			for i in self.execucoes:
+				trans = self.get_transicoes(i)
+
+				if len(trans) >= 1:
+					aux_execs.append(i)
+					aux_trans.append(trans[0])
+
+					for t in trans[1:]:
+						aux_execs.append(i.get_copia())
+						aux_trans.append(t)
 				else:
-					trans = self.get_transicoes(i)
-					if len(trans) >= 1:
-						aux_execs.append(i)
-						aux_trans.append(trans[0])
+					rejeitadas.append(i)
 
-						for t in trans[1:]:
-							aux_execs.append(deepcopy(i))
-							aux_trans.append(t)
 
+			for i in range( len(aux_execs) ):
+				aux_execs[i].execute(aux_trans[i])
+
+			self.execucoes = aux_execs
+		
+			for r in rejeitadas:
+				print("Execução Recusada", end=' - ')
+				r.descricao()
 
 			if len(aux_trans) == 0:
-				print("Entrada Nao aceita")
+				print("Entrada Recusada")
 				return 1
-			self.execucoes = aux_execs
-			for (i, execs) in enumerate(self.execucoes):
-				execs.execute(aux_trans[i])
-		

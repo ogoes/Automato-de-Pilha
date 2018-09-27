@@ -35,3 +35,6 @@ class Transicao:
 
     def get_novos_simbolos_pilha(self):
         return self.novos_simbolos_pilha
+
+    def mostra(self):
+        print(self.estado.get_nome(), self.simbolo_fita, self.simbolos_pilha, self.novo_estado.get_nome(), self.novos_simbolos_pilha)
