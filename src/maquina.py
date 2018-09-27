@@ -104,9 +104,11 @@ class Maquina:
 			self.execucoes = aux_execs
 		
 			for r in rejeitadas:
-				print("Execução Recusada", end=' - ')
-				r.descricao()
+				if len(aux_trans) != 0:
+					print("Execução Recusada", end=' - ')
+					r.descricao()
 
 			if len(aux_trans) == 0:
-				print("Entrada Recusada")
+				print("Entrada Recusada", end=' - ')
+				rejeitadas[0].descricao()
 				return 1
