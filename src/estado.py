@@ -1,8 +1,8 @@
 class Estado:
     def __init__(self, nome):
         self.nome = nome 
-        self.inicial = False
-        self.final = False
+        self.inicial = False ## eh estado inicial?
+        self.final = False ## eh estado final?
 
     def get_nome(self):
         return self.nome
