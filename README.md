@@ -11,6 +11,9 @@ As classes mais importantes do código são a de controle de execuções (maquin
 - ##### maquina.py
     No início desta classe, temos o método construtor da classe que é responsável por fazer a atribuição dos dados na máquina, define os estados iniciais e finais
 
+- ##### execucao.py
+    Nesse arquivo se encontra a classe ```Algoz```, a qual representa um fluxo de execução da máquina. A mesma recebe como argumentos do método construtor a entrada da fita, a pilha e o estado atual. O método mais importante é o ```execute```, onde de fato a transição é executada. Primeiramente, o símbolo da fita da transição é lido e removido da fita (shift), a menos que seja um epsilon. Após isso, os simbolos são removidos da pilha (se for epsilon, não remove). Então, o estado atual da execução é definido para o novo estado da transição e os novos símbolos são adicionados no topo da pilha (se for epsilon, não adiciona).
+
 
 # Execução do programa
 #### Modo de execução do programa:
