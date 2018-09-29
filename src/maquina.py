@@ -139,5 +139,5 @@ class Maquina:
 			for i in range( len(aux_execs) ): ## loop de execucao
 				aux_execs[i].execute(aux_trans[i])
 
-			self.execucoes = aux_execs ## vetor principal de execucoes tem as transicoes que ainda estao "ativas"
+			self.execucoes = aux_execs ## vetor principal de execucoes tem as execucoes que ainda estao "ativas"
 		
