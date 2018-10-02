@@ -3,7 +3,7 @@
 Projeto para a matéria de Linguagens Formais, Autômatos e Computabilidade
 Desenvolvido por Dennis Urtubia, Jorge Rossi e Otávio Goes.
 
-Dado uma descrição de funcionamento de um Autômato de Pilha e uma entrada para verficação, o programa escrito em Python efetua as possíveis transições entre os estados e retorna rejeição ou aceitação por estado final ou pilha vazia.
+Dado uma descrição de funcionamento de um Autômato de Pilha e uma entrada para verficação, o programa escrito em Python 3 efetua as possíveis transições entre os estados e retorna rejeição ou aceitação por estado final ou pilha vazia.
 
 # Funcionamento do código fonte
 
